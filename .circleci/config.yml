@@ -61,8 +61,8 @@ jobs:
             # Login to ecr and docker login
             aws_login=`aws ecr get-login --no-include-email --region sa-east-1`
             eval $aws_login
+            aws cloudfront create-invalidation --distribution-id E33S251HON5BJ0 --paths "/*"
             aws s3 sync build/ s3://website.production
-
 workflows:
   version: 2
   build-test-and-deploy:
